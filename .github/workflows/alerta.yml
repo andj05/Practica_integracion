@@ -55,7 +55,7 @@ jobs:
                -H "Tags: github,ci,devops,itla" \
                -d "Build $STATUS
                
-          Estudiante: Anddy Jara (Tu matrícula aquí)
+          Estudiante: Anddy Jara (2024-0148)
           Curso: Electiva 2 - DevOps
           Profesor: Elvys Cruz
 

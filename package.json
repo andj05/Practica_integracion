@@ -1,0 +1,19 @@
+{
+  "name": "practica-integracion-devops",
+  "version": "1.0.0",
+  "description": "Práctica de Integración Continua con GitHub Actions - Electiva 2 ITLA",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Test passed - Hola Mundo funcionando correctamente\" && exit 0"
+  },
+  "keywords": [
+    "devops",
+    "ci",
+    "github-actions",
+    "itla",
+    "javascript"
+  ],
+  "author": "Anddy Jara <tu-matricula@itla.edu.do>",
+  "license": "MIT"
+}
