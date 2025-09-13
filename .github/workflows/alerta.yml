@@ -1,0 +1,55 @@
+name: CI/CD con Notificación NTFY
+
+# Se ejecuta cuando hay push a la rama main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout del código
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      # 2. Configurar Node.js (si usas JavaScript)
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # 3. Ejecutar el programa
+      - name: Ejecutar programa Hola Mundo
+        run: node index.js
+
+      # 4. Enviar notificación de éxito a ntfy.sh
+      - name: Notificación de éxito
+        if: success()
+        run: |
+          curl -d "✅ CI/CD Exitoso - Código desplegado en main
+          📦 Repositorio: ${{ github.repository }}
+          👤 Autor: ${{ github.actor }}
+          📝 Commit: ${{ github.event.head_commit.message }}
+          🔗 Ver cambios: ${{ github.event.head_commit.url }}" \
+          -H "Title: 🚀 Deployment Exitoso - DevOps ITLA" \
+          -H "Priority: high" \
+          -H "Tags: white_check_mark,rocket,computer" \
+          https://ntfy.sh/devops-itla
+
+      # 5. Enviar notificación de fallo a ntfy.sh
+      - name: Notificación de fallo
+        if: failure()
+        run: |
+          curl -d "❌ CI/CD Falló - Error en el deployment
+          📦 Repositorio: ${{ github.repository }}
+          👤 Autor: ${{ github.actor }}
+          📝 Commit: ${{ github.event.head_commit.message }}
+          🔗 Ver logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+          -H "Title: 🚨 Error en Deployment - DevOps ITLA" \
+          -H "Priority: urgent" \
+          -H "Tags: x,warning,computer" \
+          https://ntfy.sh/devops-itla
