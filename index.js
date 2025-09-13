@@ -1,5 +1,5 @@
 // Programa Hola Mundo
-console.log("¡Hola Mundo, Saluda Anddy Jara!");
+console.log("¡Hola Mundo!");
 console.log("Este es un programa simple para demostrar CI/CD con GitHub Actions");
 console.log("Repositorio: DevOps - ITLA");
 
